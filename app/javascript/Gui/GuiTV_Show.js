@@ -52,7 +52,7 @@ GuiTV_Show.start = function(title,url,selectedItem,topLeftItem) {
 	
 	if (this.ItemData.Items.length == 1 && File.getUserProperty("SkipShow")) {
 		//DO NOT UPDATE URL HISTORY AS SKIPPING THIS PAGE
-		var url = Server.getChildItemsURL(this.ItemData.Items[this.selectedItem].Id,"&IncludeItemTypes=Episode&fields=SortName,Overview");
+		var url = Server.getChildItemsURL(this.ItemData.Items[this.selectedItem].Id,"&Recursive=True&IncludeItemTypes=Episode&fields=SortName,Overview");
 		GuiDisplay_Episodes.start(this.ShowData.Name + " " + this.ItemData.Items[this.selectedItem].Name,url,0,0);
 	} else {
 		if (this.ItemData.Items.length > 0) {				
@@ -321,7 +321,7 @@ GuiTV_Show.keyDown = function() {
 			break;
 		case tvKey.KEY_GREEN:
 			if (this.selectedItem > -1) {
-				var url = Server.getChildItemsURL(this.ItemData.Items[this.selectedItem].Id,"&IncludeItemTypes=Episode&fields=SortName,Overview");
+				var url = Server.getChildItemsURL(this.ItemData.Items[this.selectedItem].Id,"&Recursive=True&IncludeItemTypes=Episode&fields=SortName,Overview");
 				var episodes = Server.getContent(url);
 				if (this.ItemData.Items[this.selectedItem].UserData.Played) {
 					for (var e = 0; e < episodes.Items.length; e++){
@@ -377,7 +377,7 @@ GuiTV_Show.processSelectedItem = function() {
 			GuiPlayer.start("PlayAll",urlToPlay,0,"GuiTV_Show");	
 		}
 	} else {
-		var url = Server.getChildItemsURL(this.ItemData.Items[this.selectedItem].Id,"&IncludeItemTypes=Episode&fields=SortName,Overview");
+		var url = Server.getChildItemsURL(this.ItemData.Items[this.selectedItem].Id,"&Recursive=True&IncludeItemTypes=Episode&fields=SortName,Overview");
 		GuiDisplay_Episodes.start(this.ShowData.Name + " " + this.ItemData.Items[this.selectedItem].Name,url,0,0);
 	}	
 }
